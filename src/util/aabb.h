@@ -8,8 +8,7 @@
 
 typedef vec3s AABB[2];
 
-static inline void glms_aabb_scale(AABB box, vec3s scale, AABB dest)
-{
+static inline void glms_aabb_scale(AABB box, vec3s scale, AABB dest) {
     vec3s center = glms_aabb_center(box);
     vec3s size = glms_vec3_sub(box[1], box[0]);
     

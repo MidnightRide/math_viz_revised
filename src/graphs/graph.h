@@ -10,6 +10,7 @@
 #include "linear.h"
 #include "quadratic.h"
 #include "bezier.h"
+#include "cubic.h"
 
 #define MAX_GRAPH_COUNT 512
 #define MAX_LINES_PER_GRAPH 50
@@ -24,6 +25,7 @@ enum GraphState {
     GraphState_linear,
     GraphState_quadratic,
     GraphState_bezier,
+    GraphState_cubic,  
     GraphState_MAX,
 };
 
@@ -41,7 +43,8 @@ struct Graph {
     struct Bezier *bezier;
     struct Linear *linear;
     struct Quadratic *quadratic;
-    
+    struct Cubic *cubic;
+
     struct VAO vao;
     struct VBO vbo, ibo;
 };

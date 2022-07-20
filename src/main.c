@@ -1,5 +1,5 @@
-#include "gfx/window.h"
 #include "gfx/gfx.h"
+#include "gfx/window.h"
 
 #include "state.h"
 
@@ -10,8 +10,8 @@ void init() {
     renderer_init(&state.renderer);
     graph_init(&state.graph);
     ui_init(&state.ui, &state.graph);
-    
-    state.renderer.clear_color = (vec4s){{ 0.15f, 0.15f, 0.15f, 1.f }};
+
+    state.renderer.clear_color = (vec4s){{0.15f, 0.15f, 0.15f, 1.f}};
 }
 
 void destroy() {
@@ -20,13 +20,9 @@ void destroy() {
     ui_destroy(&state.ui);
 }
 
-void resized() {
-    graph_resized(&state.graph);
-}
+void resized() { graph_resized(&state.graph); }
 
-void tick() {
-    state.ticks++;
-}
+void tick() { state.ticks++; }
 
 void update() {
     renderer_update(&state.renderer);

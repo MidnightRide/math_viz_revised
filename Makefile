@@ -31,7 +31,7 @@ run: all
 
 game: $(OBJ)
 	@echo Linking game...
-	@$(CC) -o $(BIN)/main.exe -g $^ $(LDFLAGS)
+	$(CC) -o $(BIN)/main.exe -g $^ $(LDFLAGS)
 	@echo Done.
 
 %.o: %.c

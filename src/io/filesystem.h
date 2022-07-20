@@ -12,4 +12,4 @@ void filesystem_create_dir(char *path);
 b8 filesystem_dir_exists(char *path);
 b8 filesystem_file_exists(char *path);
 
-#endif //FILE_H
+#endif // FILE_H

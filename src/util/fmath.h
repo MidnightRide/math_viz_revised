@@ -17,6 +17,7 @@
 #define F64_EPSILON DBL_EPSILON
 
 #define squaref(_x) ((_x)*(_x))
+#define cubef(_x) ((_x)*(_x)*(_x))
 #define cosf(_x) ((f32)cos(_x))
 #define sinf(_x) ((f32)sin(_x))
 #define radians(_x) ((_x) * (__typeof__(_x)) (PI / 180.0f))

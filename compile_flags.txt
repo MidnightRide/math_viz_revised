@@ -1,0 +1,6 @@
+-ID:/lib/glad/include/
+-ID:/lib/glfw/include/
+-ID:/lib/cglm/include/
+-ID:/lib/freetype/include
+-ID:/lib/stb/
+-Wno-deprecated-declarations
