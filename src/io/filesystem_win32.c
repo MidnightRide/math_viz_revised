@@ -1,5 +1,6 @@
 #include "filesystem.h"
 
+#if defined(_WIN32) || defined(WIN32)
 #include <io.h>
 #include <direct.h>
 #include <windows.h>
@@ -23,3 +24,4 @@ b8 filesystem_dir_exists(char *path) {
 b8 filesystem_file_exists(char *path) {
     return _access(path, 0) == 0;
 }
+#endif

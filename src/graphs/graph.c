@@ -58,6 +58,7 @@ void graph_destroy(struct Graph *self) {
     bezier_destroy(self->bezier);
     linear_destroy(self->linear);
     quadratic_destroy(self->quadratic);
+    cubic_destroy(self->cubic);
 }
 
 void graph_resized(struct Graph *self) { self->mesh_change_this_frame = true; }

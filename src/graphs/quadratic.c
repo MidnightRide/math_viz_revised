@@ -5,16 +5,6 @@
 #define MAX_QUADRATIC_GRAPHS 30u
 
 static inline void quadratic_deserialize(struct Quadratic *self) {
-    char cwd[100];
-    filesystem_get_dir(cwd, sizeof(cwd));
-
-    char buffer[50];
-    snprintf(buffer, 50, "%s/Documents/MathVizRevised/", getenv("USERPROFILE"));
-
-    if (!filesystem_dir_exists(buffer))
-        filesystem_create_dir(buffer);
-
-    filesystem_change_dir(buffer);
     if (filesystem_file_exists(QUADRATIC_DATA_FILEPATH)) {
         FILE *file = fopen(QUADRATIC_DATA_FILEPATH, "r");
         fread(&self->elements, sizeof(u32), 1, file);
@@ -24,7 +14,6 @@ static inline void quadratic_deserialize(struct Quadratic *self) {
               file);
         fclose(file);
     }
-    filesystem_change_dir(cwd);
 }
 
 struct Quadratic *quadratic_init(struct Graph *graph) {
@@ -53,19 +42,12 @@ struct Quadratic *quadratic_init(struct Graph *graph) {
 }
 
 static inline void quadratic_serialize(struct Quadratic *self) {
-    char cwd[100];
-    filesystem_get_dir(cwd, 100);
-    char buffer[50];
-    snprintf(buffer, 50, "%s/Documents/MathVizRevised/", getenv("USERPROFILE"));
-
-    filesystem_change_dir(buffer);
     FILE *file = fopen(QUADRATIC_DATA_FILEPATH, "w");
     fwrite(&self->elements, sizeof(u32), 1, file);
     fwrite(&self->selected_graph_index, sizeof(u32), 1, file);
     fwrite(&self->resolution, sizeof(u32), 1, file);
     fwrite(self->graphs, sizeof(struct QuadraticGraph), self->elements, file);
     fclose(file);
-    filesystem_change_dir(cwd);
 }
 
 void quadratic_destroy(struct Quadratic *self) {

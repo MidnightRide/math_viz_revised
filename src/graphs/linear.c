@@ -6,15 +6,6 @@
 #define MAX_LINEAR_GRAPHS 2048u
 
 static inline void linear_deserialize(struct Linear *self) {
-    char cwd[100];
-    filesystem_get_dir(cwd, sizeof(cwd));
-    
-    char buffer[50];
-    snprintf(buffer, 50, "%s/Documents/MathVizRevised/", getenv("USERPROFILE"));
-    
-    if (!filesystem_dir_exists(buffer)) filesystem_create_dir(buffer);
-    
-    filesystem_change_dir(buffer);
     if (filesystem_file_exists(LINEAR_DATA_FILEPATH)) {
         FILE *file = fopen(LINEAR_DATA_FILEPATH, "r");
         fread(&self->elements, sizeof(u32), 1, file);
@@ -22,7 +13,6 @@ static inline void linear_deserialize(struct Linear *self) {
         fread(self->graphs, sizeof(struct LinearGraph), self->elements, file);
         fclose(file);
     }
-    filesystem_change_dir(cwd);
 }
 
 struct Linear *linear_init(struct Graph *graph) {
@@ -49,19 +39,11 @@ struct Linear *linear_init(struct Graph *graph) {
 }
 
 static inline void linear_serialize(struct Linear *self) {
-    char cwd[100];
-    filesystem_get_dir(cwd, 100);
-    char buffer[50];
-    snprintf(buffer, 50, "%s/Documents/MathVizRevised/", getenv("USERPROFILE"));
-    
-    filesystem_change_dir(buffer);
     FILE *file = fopen(LINEAR_DATA_FILEPATH, "w");
     fwrite(&self->elements, sizeof(u32), 1, file);
     fwrite(&self->selected_graph_index, sizeof(u32), 1, file);
     fwrite(self->graphs, sizeof(struct LinearGraph), self->elements, file);
     fclose(file);
-    fclose(file);
-    filesystem_change_dir(cwd);
 }
 
 void linear_destroy(struct Linear *self) {

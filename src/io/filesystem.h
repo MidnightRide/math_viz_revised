@@ -1,7 +1,5 @@
-/* date = July 11th 2022 7:23 pm */
-
-#ifndef FILESYSTEM_H
-#define FILESYSTEM_H
+#ifndef FILESYSTEM_LINUX_H
+#define FILESYSTEM_LINUX_H
 
 #include "../util/util.h"
 
@@ -12,4 +10,4 @@ void filesystem_create_dir(char *path);
 b8 filesystem_dir_exists(char *path);
 b8 filesystem_file_exists(char *path);
 
-#endif // FILE_H
+#endif

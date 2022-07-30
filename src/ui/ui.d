@@ -1,6 +1,5 @@
-src/graphs/bezier.o: src/graphs/bezier.c /usr/include/stdc-predef.h \
- src/graphs/../state.h src/graphs/../gfx/gfx.h \
- /media/terabyte/lib/glad/include/glad/glad.h \
+src/ui/ui.o: src/ui/ui.c /usr/include/stdc-predef.h src/ui/../state.h \
+ src/ui/../gfx/gfx.h /media/terabyte/lib/glad/include/glad/glad.h \
  /media/terabyte/lib/glad/include/KHR/khrplatform.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
@@ -13,8 +12,8 @@ src/graphs/bezier.o: src/graphs/bezier.c /usr/include/stdc-predef.h \
  /usr/include/bits/stdint-intn.h /usr/include/bits/stdint-uintn.h \
  /media/terabyte/lib/glfw/include/GLFW/glfw3.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include/stddef.h \
- src/graphs/../gfx/window.h src/graphs/../gfx/./gfx.h \
- src/graphs/../gfx/../util/util.h /usr/include/math.h \
+ src/ui/../gfx/window.h src/ui/../gfx/./gfx.h \
+ src/ui/../gfx/../util/util.h /usr/include/math.h \
  /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
  /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
  /usr/include/bits/flt-eval-method.h /usr/include/bits/fp-logb.h \
@@ -32,7 +31,7 @@ src/graphs/bezier.o: src/graphs/bezier.c /usr/include/stdc-predef.h \
  /usr/include/assert.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed/syslimits.h \
- /usr/include/limits.h src/graphs/../gfx/../util/defines.h \
+ /usr/include/limits.h src/ui/../gfx/../util/defines.h \
  /media/terabyte/lib/cglm/include/cglm/cglm.h \
  /media/terabyte/lib/cglm/include/cglm/common.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include/float.h \
@@ -155,22 +154,21 @@ src/graphs/bezier.o: src/graphs/bezier.c /usr/include/stdc-predef.h \
  /media/terabyte/lib/cglm/include/cglm/struct/affine2d.h \
  /media/terabyte/lib/cglm/include/cglm/struct/../affine2d.h \
  /media/terabyte/lib/cglm/include/cglm/struct/mat3.h \
- src/graphs/../gfx/../util/ivec2.h src/graphs/../gfx/../util/ivec2s.h \
+ src/ui/../gfx/../util/ivec2.h src/ui/../gfx/../util/ivec2s.h \
  /media/terabyte/lib/cglm/include/cglm/common.h \
  /media/terabyte/lib/cglm/include/cglm/types-struct.h \
  /media/terabyte/lib/cglm/include/cglm/util.h \
- src/graphs/../gfx/../util/ivec3.h src/graphs/../gfx/../util/ivec3s.h \
- src/graphs/../gfx/../util/aabb.h src/graphs/../gfx/../util/camera.h \
- src/graphs/../gfx/../util/util.h src/graphs/../gfx/../util/time.h \
+ src/ui/../gfx/../util/ivec3.h src/ui/../gfx/../util/ivec3s.h \
+ src/ui/../gfx/../util/aabb.h src/ui/../gfx/../util/camera.h \
+ src/ui/../gfx/../util/util.h src/ui/../gfx/../util/time.h \
  /usr/include/time.h /usr/include/bits/time.h \
  /usr/include/bits/types/clock_t.h /usr/include/bits/types/time_t.h \
  /usr/include/bits/types/struct_tm.h \
  /usr/include/bits/types/struct_timespec.h /usr/include/bits/endian.h \
- /usr/include/bits/endianness.h src/graphs/../gfx/../util/vmath.h \
- src/graphs/../gfx/../util/fmath.h src/graphs/../gfx/../util/color.h \
- src/graphs/../gfx/renderer.h src/graphs/../gfx/shader.h \
- src/graphs/../gfx/gfx.h src/graphs/../gfx/texture.h \
- src/graphs/../gfx/vao.h src/graphs/../gfx/vbo.h \
+ /usr/include/bits/endianness.h src/ui/../gfx/../util/vmath.h \
+ src/ui/../gfx/../util/fmath.h src/ui/../gfx/../util/color.h \
+ src/ui/../gfx/renderer.h src/ui/../gfx/shader.h src/ui/../gfx/gfx.h \
+ src/ui/../gfx/texture.h src/ui/../gfx/vao.h src/ui/../gfx/vbo.h \
  /media/terabyte/lib/freetype/include/ft2build.h \
  /media/terabyte/lib/freetype/include/freetype/config/ftheader.h \
  /media/terabyte/lib/freetype/include/freetype/freetype.h \
@@ -189,13 +187,11 @@ src/graphs/bezier.o: src/graphs/bezier.c /usr/include/stdc-predef.h \
  /media/terabyte/lib/freetype/include/freetype/fterrors.h \
  /media/terabyte/lib/freetype/include/freetype/ftmoderr.h \
  /media/terabyte/lib/freetype/include/freetype/fterrdef.h \
- src/graphs/../util/util.h src/graphs/../graphs/graph.h \
- src/graphs/../graphs/../util/util.h src/graphs/../graphs/../gfx/vbo.h \
- src/graphs/../graphs/../gfx/vao.h \
- src/graphs/../graphs/../io/filesystem.h \
- src/graphs/../graphs/../io/../util/util.h src/graphs/../graphs/linear.h \
- src/graphs/../graphs/graph.h src/graphs/../graphs/quadratic.h \
- src/graphs/../graphs/bezier.h src/graphs/../graphs/cubic.h \
- src/graphs/../ui/ui.h src/graphs/../ui/../util/util.h \
- src/graphs/../ui/../graphs/graph.h src/graphs/../ui/../gfx/gfx.h \
- src/graphs/bezier.h
+ src/ui/../util/util.h src/ui/../graphs/graph.h \
+ src/ui/../graphs/../util/util.h src/ui/../graphs/../gfx/vbo.h \
+ src/ui/../graphs/../gfx/vao.h src/ui/../graphs/../io/filesystem.h \
+ src/ui/../graphs/../io/../util/util.h src/ui/../graphs/linear.h \
+ src/ui/../graphs/graph.h src/ui/../graphs/quadratic.h \
+ src/ui/../graphs/bezier.h src/ui/../graphs/cubic.h src/ui/../ui/ui.h \
+ src/ui/../ui/../util/util.h src/ui/../ui/../graphs/graph.h \
+ src/ui/../ui/../gfx/gfx.h src/ui/ui.h

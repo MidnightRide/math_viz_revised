@@ -1,45 +1,28 @@
-CC = clang
-CFLAGS = -std=c11 -MD -g -O0 -Wall -Wextra -Wpedantic -Wstrict-aliasing -Wno-visibility -Wno-pedantic -Wno-write-strings
-CFLAGS += -Wno-pointer-arith -Wno-newline-eof -Wno-unused-parameter -Wno-gnu-statement-expression -Wno-static-in-inline
-CFLAGS += -Wno-gnu-compound-literal-initializer -Wno-gnu-zero-variadic-macro-arguments -Wno-missing-braces 
-CFLAGS += -Wno-deprecated-declarations -Wno-zero-length-array -Wno-language-extension-token -Wno-char-subscripts	
-CFLAGS += -D_DEBUG -D_CRT_SECURE_NO_WARNINGS 
-CFLAGS += -ID:/lib/cglm/include -ID:/lib/glad/include -ID:/lib/glfw/include -ID:/lib/stb -ID:\lib\freetype\include
-LDFLAGS = D:/lib/glad/src/glad.o D:/lib/cglm/build/Release/cglm.lib D:/lib/glfw/lib-vc2022/glfw3dll.lib 
-LDFLAGS += D:\lib\freetype\objs\x64\Release\freetype.lib
+CC = gcc
+CFLAGS = -std=c11 -g -Wall -Wextra -Wno-pedantic -Wstrict-aliasing -Wno-visibility -Wno-unused-parameter -Wno-char-subscripts -Wno-format -Wno-sign-compare
+CFLAGS += -D_DEBUG -D_CRT_SECURE_NO_WARNINGS
+CFLAGS += -I/media/terabyte/lib/freetype/include -I/media/terabyte/lib/cglm/include -I/media/terabyte/lib/glad/include -I/media/terabyte/lib/glfw/include -I/media/terabyte/lib/stb 
+LDFLAGS = /media/terabyte/lib/glad/src/glad.o /media/terabyte/lib/freetype/build/libfreetype.a /media/terabyte/lib/cglm/libcglm.a /media/terabyte/lib/glfw/src/libglfw3.a -lbz2 -lm -lpng16 -lz -lharfbuzz -lbrotlidec
 
-SRC  = $(wildcard D:/development/math_visualiser_revised/src/**/*.c) 
-SRC += $(wildcard D:/development/math_visualiser_revised/src/*.c) 
-SRC += $(wildcard D:/development/math_visualiser_revised/src/**/**/*.c) 
-SRC += $(wildcard D:/development/math_visualiser_revised/src/**/**/**/*.c)
-OBJ = $(SRC:.c=.o)
-BIN = bin
+SRC  = $(wildcard src/**/*.c) $(wildcard src/*.c) $(wildcard src/**/**/*.c) $(wildcard src/**/**/**/*.c)
+OBJ  = $(SRC:.c=.o)
+BIN  = bin
 
-.PHONY: all clean
+.PHONY = all clean
 
-all: dirs game clean
+all: dirs game
 
 dirs:
-	@echo Creating directories...
-	@IF exist "$(BIN)/" (@echo Directory "$(BIN)" Already Exists!) else (mkdir $(BIN))
-	@echo Done.
+	mkdir -p ./$(BIN)
 
 run: all
-	@echo $(OBJ)
-	@echo Running game...
-	@$(BIN)/main.exe
+	$(BIN)/main
 
 game: $(OBJ)
-	@echo Linking game...
-	$(CC) -o $(BIN)/main.exe -g $^ $(LDFLAGS)
-	@echo Done.
+	$(CC) -o $(BIN)/main $^ $(LDFLAGS)
 
 %.o: %.c
-	@echo $<...
-	@$(CC) -o $@ -c $< $(CFLAGS)
+	$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:
-	@echo Deleting object files...
-	@del /s src\*.o
-	@del /s src\*.d
-	@echo Done.
+	rm -rf $(BIN) $(OBJ)
