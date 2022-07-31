@@ -1,6 +1,0 @@
--I/media/terabyte/lib/glad/include/
--I/media/terabyte/lib/glfw/include/
--I/media/terabyte/lib/cglm/include/
--I/media/terabyte/lib/freetype/include
--I/media/terabyte/lib/stb/
--Wno-deprecated-declarations
