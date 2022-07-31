@@ -4,7 +4,16 @@
 #define CUBIC_DATA_FILEPATH "cub.mdat"
 #define MAX_CUBIC_GRAPHS 30u
 
-static inline void cubic_deserialize(struct Cubic *self) {}
+static inline void cubic_deserialize(struct Cubic *self) {
+    if (filesystem_file_exists(CUBIC_DATA_FILEPATH)) {
+        FILE *file = fopen(CUBIC_DATA_FILEPATH, "r");
+        fread(&self->elements, sizeof(u32), 1, file);
+        fread(&self->selected_graph_index, sizeof(u32), 1, file);
+        fread(&self->resolution, sizeof(u32), 1, file);
+        fread(self->graphs, sizeof(struct CubicGraph), self->elements, file);
+        fclose(file);
+    }
+}
 
 struct Cubic *cubic_init(struct Graph *graph) {
     struct Cubic *self = malloc(sizeof(struct Cubic));
@@ -25,7 +34,14 @@ struct Cubic *cubic_init(struct Graph *graph) {
     return self;
 }
 
-static inline void cubic_serialize(struct Cubic *self) {}
+static inline void cubic_serialize(struct Cubic *self) {
+    FILE *file = fopen(CUBIC_DATA_FILEPATH, "w");
+    fwrite(&self->elements, sizeof(u32), 1, file);
+    fwrite(&self->selected_graph_index, sizeof(u32), 1, file);
+    fwrite(&self->resolution, sizeof(u32), 1, file);
+    fwrite(self->graphs, sizeof(struct CubicGraph), self->elements, file);
+    fclose(file);
+}
 
 void cubic_destroy(struct Cubic *self) {
     cubic_serialize(self);

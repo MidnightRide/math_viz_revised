@@ -158,7 +158,6 @@ static inline void ui_render_slider(struct UI *self, vec2s position, f32 value,
 
     vec4s background_color = (vec4s){{0.4f, 0.4f, 0.4f, 0.2f}};
     vec4s line_color = (vec4s){{0.3f, 0.3f, 0.3f, 1.0f}};
-    vec2s button_size = (vec2s){{60.f + margin, 16.f + margin}};
 
     mat4s m = glms_translate(
         glms_mat4_identity(),
@@ -168,8 +167,10 @@ static inline void ui_render_slider(struct UI *self, vec2s position, f32 value,
 
     char name[20];
     snprintf(name, 20, "%*.*f", 3, 1, value);
-    if (strlen(name) > 4)
-        name[5] = '\0';
+    
+    u32 name_length = strlen(name);
+
+    vec2s button_size = (vec2s){{name_length * 9.f + margin + 2.f, 16.f + margin}};
 
     renderer_quad_color(&state.renderer,
                         (vec2s){{button_size.x, button_size.y}},
@@ -282,8 +283,8 @@ void ui_render(struct UI *self) {
                     self->graph->state == GraphState_linear);
 
     char temp[50];
-    snprintf(temp, 50, "%f:%f",
-             state.window->size.x / 2 - state.window->mouse.position.x,
+    snprintf(temp, 50, "%.0f:%.0f",
+             state.window->mouse.position.x,
              state.window->mouse.position.y);
     ui_render_label(self, temp,
                     (vec2s){{-state.window->size.x / 2 + 13.f,

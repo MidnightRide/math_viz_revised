@@ -4,22 +4,11 @@
 #define GRAPH_DATA_FILEPATH "graphs.mdat"
 
 static inline void graph_deserialize(struct Graph *self) {
-    char cwd[100];
-    filesystem_get_dir(cwd, sizeof(cwd));
-
-    char buffer[50];
-    snprintf(buffer, 50, "%s/Documents/MathVizRevised/", getenv("USERPROFILE"));
-
-    if (!filesystem_dir_exists(buffer))
-        filesystem_create_dir(buffer);
-
-    filesystem_change_dir(buffer);
     if (filesystem_file_exists(GRAPH_DATA_FILEPATH)) {
         FILE *file = fopen(GRAPH_DATA_FILEPATH, "r");
         fread(&self->state, sizeof(enum GraphState), 1, file);
         fclose(file);
     }
-    filesystem_change_dir(cwd);
 }
 
 void graph_init(struct Graph *self) {
@@ -38,16 +27,9 @@ void graph_init(struct Graph *self) {
 }
 
 static inline void graph_serialize(struct Graph *self) {
-    char cwd[100];
-    filesystem_get_dir(cwd, 100);
-    char buffer[50];
-    snprintf(buffer, 50, "%s/Documents/MathVizRevised/", getenv("USERPROFILE"));
-
-    filesystem_change_dir(buffer);
     FILE *file = fopen(GRAPH_DATA_FILEPATH, "w");
     fwrite(&self->state, sizeof(enum GraphState), 1, file);
     fclose(file);
-    filesystem_change_dir(cwd);
 }
 
 void graph_destroy(struct Graph *self) {

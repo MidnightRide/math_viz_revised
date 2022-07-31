@@ -10,7 +10,10 @@ void filesystem_get_dir(char *dir, u32 length) {
 }
 
 void filesystem_change_dir(char *path) {
-    chdir(path);
+    char s[100];
+    if(chdir(path) == 0) {
+        printf("changed dir request %s to %s\n", path, getcwd(s, 100));
+    }
 }
 
 void filesystem_create_dir(char *path) {

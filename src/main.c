@@ -6,6 +6,11 @@
 struct State state;
 
 void init() {
+    char *homedir = getenv("HOME");
+    char buffer[50];
+    snprintf(buffer, 50, "%s/bin/mviz", homedir);
+    filesystem_change_dir(buffer);
+
     state.window = &window;
     renderer_init(&state.renderer);
     graph_init(&state.graph);
